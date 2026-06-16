@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prasanna N | Premium Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark-mesh: radial-gradient(at 0% 0%, #0f172a 0px, transparent 50%),
+                            radial-gradient(at 50% 0%, #1e1b4b 0px, transparent 50%),
+                            radial-gradient(at 100% 0%, #0f172a 0px, transparent 50%);
+            --bg-light-mesh: radial-gradient(at 0% 100%, #f1f5f9 0px, transparent 40%),
+                             radial-gradient(at 100% 0%, #e2e8f0 0px, transparent 40%);
+            --primary-accent: #00f2fe;
+            --secondary-accent: #4facfe;
+            --dark-surface: #0b0f19;
+            --dark-card: rgba(30, 41, 59, 0.7);
+            --light-bg: #f8fafc;
+            --light-card: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --glow: 0 0 25px rgba(0, 242, 254, 0.25);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Smooth Glassmorphism Header */
+        .navbar {
+            background: rgba(11, 15, 25, 0.85) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.75) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 18px !important;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #fff !important;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+        }
+
+        /* Dynamic Mesh Hero Section */
+        .hero {
+            background-color: #0b0f19;
+            background-image: var(--bg-dark-mesh);
+            background-size: 200% 200%;
+            animation: meshWave 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+            padding: 180px 0 120px 0;
+            color: white;
+        }
+        @keyframes meshWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3.5rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Profile Image Styling */
+        .profile-image-container {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 1.5rem auto;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .profile-image-container:hover .profile-img {
+            transform: scale(1.05);
+            border-color: var(--primary-accent);
+        }
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: -6px; right: -6px; bottom: -6px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: opacity 0.4s ease;
+        }
+        .profile-image-container:hover::before {
+            opacity: 0.8;
+        }
+
+        /* NEW ENHANCEMENT: Interactive Resume Button Styles */
+        .btn-enhanced-resume {
+            border: 2px solid rgba(0, 242, 254, 0.6);
+            background: rgba(0, 242, 254, 0.03);
+            color: var(--primary-accent) !important;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 14px 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            overflow: visible;
+        }
+        .btn-enhanced-resume:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(45deg, rgba(79, 172, 254, 0.2), rgba(0, 242, 254, 0.25));
+            border-color: var(--primary-accent);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.3), var(--glow);
+            color: #fff !important;
+        }
+        .btn-enhanced-resume:hover .fa-file-arrow-down {
+            animation: bounceIcon 1s infinite;
+        }
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+        
+        /* Interactive neon status pulse element */
+        .badge-pulse {
+            position: absolute;
+            top: -4px;
+            right: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff2a7f;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(255, 42, 127, 0.7);
+            animation: pulseDot 1.6s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+        @keyframes pulseDot {
+            to { box-shadow: 0 0 0 10px rgba(255, 42, 127, 0); }
+        }
+
+        /* Sections Layout Architecture */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+        .bg-section-light {
+            background-color: #f1f5f9;
+            background-image: var(--bg-light-mesh);
+            color: var(--text-main);
+        }
+        .bg-section-dark {
+            background: #0f172a;
+            background-image: linear-gradient(to bottom, #0f172a, #0b0f19);
+            color: #fff;
+        }
+        .section-title {
+            font-weight: 800;
+            font-size: 2.6rem;
+            margin-bottom: 70px;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+        .bg-section-dark .section-title { color: #fff; }
+        .bg-section-light .section-title { color: #1e293b; }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Premium Adaptive Cards */
+        .enhanced-card {
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bg-section-light .enhanced-card {
+            background: var(--light-card);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.03);
+        }
+        .bg-section-dark .enhanced-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #f8fafc;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Interactive Hovers */
+        .bg-section-light .enhanced-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08), 0 0 25px rgba(79, 172, 254, 0.15);
+            border-color: rgba(79, 172, 254, 0.4);
+        }
+        .bg-section-dark .enhanced-card:hover {
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), var(--glow);
+        }
+
+        /* Skill Badges */
+        .skill-badge {
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin: 6px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .bg-section-light .skill-badge {
+            background: #e2e8f0;
+            color: #334155;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .bg-section-dark .skill-badge {
+            background: rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Modern Custom Timeline */
+        .modern-timeline {
+            position: relative;
+            border-left: 3px solid #cbd5e1;
+            padding-left: 35px;
+        }
+        .timeline-block {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .timeline-block::before {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border: 5px solid var(--secondary-accent);
+            border-radius: 50%;
+            left: -48px;
+            top: 6px;
+            box-shadow: 0 0 0 6px rgba(79, 172, 254, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-block:hover::before {
+            background: var(--primary-accent);
+            border-color: #fff;
+            transform: scale(1.25);
+            box-shadow: 0 0 20px var(--primary-accent);
+        }
+
+        /* Contact Architecture */
+        .contact-box {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+        .contact-box:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: var(--secondary-accent);
+            box-shadow: var(--glow);
+        }
+        .form-glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: #fff !important;
+        }
+        .form-glass::placeholder { color: #64748b; }
+        .form-glass:focus {
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 0 0 4px rgba(0, 242, 254, 0.2);
+            border-color: var(--primary-accent);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 14px 35px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+            color: white;
+        }
+        
+        .btn-outline-custom {
+            background: transparent;
+            color: #1e293b;
+            border: 2px solid #cbd5e1;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 12px 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--dark-surface);
+            color: #94a3b8;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PRASANNA N</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2 align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero d-flex align-items-center">
+        <div class="container position-relative z-3">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-9 col-xl-8">
+                    <div class="hero-glass-panel">
+                        <div class="profile-image-container">
+                            <img src="E:\portfolio\my photo\WhatsApp Image 2026-06-10 at 10.19.26 AM.jpeg" alt="Prasanna N" class="profile-img">
+                        </div>
+                        
+                        <span class="badge px-3 py-2 rounded-pill mb-3 text-uppercase tracking-wider" style="background: rgba(0,242,254,0.15); color: var(--primary-accent); border: 1px solid rgba(0,242,254,0.3);">Welcome to My Space</span>
+                        <h1 class="display-3 fw-bold mb-3">Hi, I'm Prasanna N</h1>
+                        <p class="lead fs-4 mb-4">IT / Software Fresher | B.Sc Computer Science & Applications</p>
+                        <p class="small opacity-75 mb-5"><i class="fa-solid fa-location-dot me-2 text-info"></i>Sivagiri, Tamil Nadu</p>
+                        
+                        <!-- ENHANCED HERO ACTION ROW -->
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="#projects" class="btn btn-gradient btn-lg px-4">Explore My Work</a>
+                            <a href="E:\portfolio\My resume\Prasanna_N_Resume.pdf" download class="btn-enhanced-resume btn-lg px-4">
+                                <span class="badge-pulse"></span>
+                                <i class="fa-solid fa-file-arrow-down me-2"></i>Get Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="bg-section-light">
+        <div class="container">
+            <h2 class="text-center section-title">Professional Summary</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-center">
+                    <div class="enhanced-card p-5 shadow-sm mb-5">
+                        <p class="lead text-secondary lh-lg mb-0 fs-5">
+                            Enthusiastic and detail-oriented Computer Science graduate (in progress) with a strong foundation in programming, web development, and database fundamentals. Passionate about building clean, functional applications and eager to bring fresh perspectives to a dynamic IT team. A fast learner who thrives in collaborative environments and is committed to continuous growth in the software industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="bg-section-light pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="enhanced-card p-5 text-center border border-info border-opacity-25" style="background: linear-gradient(135deg, rgb(142, 81, 189), rgba(227, 224, 231, 0.9));">
+                        <div class="p-3 bg-info bg-opacity-10 rounded-circle d-inline-flex text-info mb-4">
+                            <i class="fa-solid fa-file-invoice fs-2 px-1"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark mb-2">Resume</h3>
+                        <p class="text-muted mb-4 mx-auto" style="max-width: 600px;">Review or download a comprehensive, single-page professional summary detailing technical training, laboratory certifications, and academic benchmarks.</p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="E:\portfolio\My resume\Prasanna_N_Resume.pdf" target="_blank" class="btn btn-outline-custom"><i class="fa-solid fa-eye me-2"></i>View Online</a>
+                            <a href="E:\portfolio\My resume\Prasanna_N_Resume.pdf" download class="btn btn-gradient"><i class="fa-solid fa-download me-2"></i>Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-section-dark">
+        <div class="container">
+            <h2 class="text-center section-title">Skills & Strengths</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card enhanced-card h-100 p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="p-3 bg-primary bg-opacity-10 rounded-3 text-info me-3">
+                                <i class="fa-solid fa-code fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold mb-0 text-white">Core Development</h4>
+                        </div>
+                        <div>
+                            <span class="skill-badge"><i class="fa-brands fa-java text-danger me-1"></i> Java</span>
+                            <span class="skill-badge"><i class="fa-brands fa-python text-primary me-1"></i> Python (Basics)</span>
+                            <span class="skill-badge"><i class="fa-html5 fa-brands text-warning me-1"></i> HTML5</span>
+                            <span class="skill-badge"><i class="fa-css3-alt fa-brands text-info me-1"></i> CSS3</span>
+                            <span class="skill-badge"><i class="fa-js fa-brands text-warning me-1"></i> JavaScript</span>
+                            <span class="skill-badge"><i class="fa-solid fa-database text-secondary me-1"></i> MySQL (Basics)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card enhanced-card h-100 p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="p-3 bg-success bg-opacity-10 rounded-3 text-success me-3">
+                                <i class="fa-solid fa-bolt fs-4"></i>
+                            </div>
+                            <h4 class="fw-bold mb-0 text-white">Professional Strengths</h4>
+                        </div>
+                        <div>
+                            <span class="skill-badge">VS Code</span>
+                            <span class="skill-badge">Problem-Solving</span>
+                            <span class="skill-badge">Effective Communication</span>
+                            <span class="skill-badge">Team Collaboration</span>
+                            <span class="skill-badge">Quick Learner</span>
+                            <span class="skill-badge">Attention to Detail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="bg-section-light">
+        <div class="container">
+            <h2 class="text-center section-title">Education Journey</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="modern-timeline">
+                        <div class="timeline-block">
+                            <div class="card enhanced-card p-4">
+                                <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-1 text-dark">B.Sc Computer Science & Applications</h4>
+                                    <span class="badge bg-primary rounded-pill px-3 py-2">2023 - 2026</span>
+                                </div>
+                                <p class="text-primary fw-semibold mb-3">Kongu Arts and Science College, Nanjanapuram</p>
+                                <p class="text-muted small mb-2"><i class="fa-solid fa-book-open me-2"></i><strong>Relevant Coursework:</strong> Data Structures, OOP with Java, Web Technologies, DBMS, Operating Systems.</p>
+                                <p class="text-muted small mb-0"><i class="fa-solid fa-flask me-2"></i>Active lab participant - built static websites and practised Python scripting exercises.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block">
+                            <div class="card enhanced-card p-4">
+                                <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-1 text-dark">Higher Secondary Certificate (HSC) - Computer Science</h4>
+                                    <span class="badge bg-secondary rounded-pill px-3 py-2">2021 - 2023</span>
+                                </div>
+                                <p class="text-secondary fw-semibold mb-0">Thamarai Matric Higher Secondary School, Thamaraipalayam</p>
+                            </div>
+                        </div>
+                        <div class="timeline-block">
+                            <div class="card enhanced-card p-4">
+                                <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-1 text-dark">SSLC (State Board)</h4>
+                                    <span class="badge bg-secondary rounded-pill px-3 py-2">2020 - 2021</span>
+                                </div>
+                                <p class="text-secondary fw-semibold mb-0">Government Boys Higher Secondary School, Sivagiri</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-section-dark">
+        <div class="container">
+            <h2 class="text-center section-title">Projects & Lab Experience</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card enhanced-card h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="fw-bold text-white mb-0">Personal Portfolio Website</h4>
+                                <span class="badge bg-light text-dark px-3 py-2 rounded-pill">2024</span>
+                            </div>
+                            <p class="text-info small fw-semibold mb-3"><i class="fa-solid fa-laptop-code me-1"></i> Academic Project</p>
+                            <ul class="text-light opacity-75 ps-3 small">
+                                <li class="mb-2">Designed and developed a responsive personal portfolio using HTML5, CSS3, and JavaScript to showcase skills and coursework.</li>
+                                <li>Implemented mobile-first layout principles and interactive navigation for a better user experience.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card enhanced-card h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="fw-bold text-white mb-0">Student Result Management System</h4>
+                                <span class="badge bg-light text-dark px-3 py-2 rounded-pill">2025</span>
+                            </div>
+                            <p class="text-info small fw-semibold mb-3"><i class="fa-solid fa-database me-1"></i> Academic Project</p>
+                            <ul class="text-light opacity-75 ps-3 small">
+                                <li class="mb-2">Built a simple CRUD-based student system using Python and MySQL to store and retrieve marks.</li>
+                                <li>Practised database design concepts including table creation, relationships, and basic query optimization.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card enhanced-card p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-terminal text-info fs-4 me-3"></i>
+                            <h4 class="fw-bold text-white mb-0">Lab Exercises & Coursework (Ongoing)</h4>
+                        </div>
+                        <ul class="text-light opacity-75 small mb-0 ps-3">
+                            <li class="mb-2">Completed 20+ programming assignments covering sorting algorithms, string manipulation, and OOP concepts in Java.</li>
+                            <li>Gained hands-on experience troubleshooting system errors and configuring Windows environments in lab sessions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-section-dark" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <h2 class="text-center section-title">Connect With Me</h2>
+            <div class="row justify-content-center g-4 mb-5">
+                <div class="col-md-4 text-center">
+                    <div class="p-4 contact-box h-100">
+                        <div class="text-info mb-3"><i class="fa-solid fa-envelope fs-2"></i></div>
+                        <h5 class="fw-bold text-white">Email</h5>
+                        <a href="mailto:prasannakasc@gmail.com" class="text-decoration-none text-info opacity-90">prasannakasc@gmail.com</a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-4 contact-box h-100">
+                        <div class="text-info mb-3"><i class="fa-solid fa-phone fs-2"></i></div>
+                        <h5 class="fw-bold text-white">Phone</h5>
+                        <p class="text-light opacity-75 mb-0">+91 70100 36994</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="p-4 contact-box h-100">
+                        <div class="text-info mb-3"><i class="fa-solid fa-map-location-dot fs-2"></i></div>
+                        <h5 class="fw-bold text-white">Location</h5>
+                        <p class="text-light opacity-75 mb-0">Sivagiri, Tamil Nadu</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-7">
+                    <form id="portfolioContactForm" class="contact-box p-5">
+                        <div class="mb-4">
+                            <label for="name" class="form-label fw-semibold text-light opacity-90">Your Name</label>
+                            <input type="text" class="form-control form-glass" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-semibold text-light opacity-90">Email Address</label>
+                            <input type="email" class="form-control form-glass" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label fw-semibold text-light opacity-90">Message</label>
+                            <textarea class="form-control form-glass" id="message" rows="5" placeholder="Let's build something great together..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient w-100 py-3">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p class="mb-3 text-white fw-semibold">&copy; 2026 Prasanna N. All Rights Reserved.</p>
+            <p class="small text-muted px-4 mb-0"><em>Declaration: I hereby declare that all information furnished above is true and correct to the best of my knowledge and belief.</em></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.getElementById('portfolioContactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Awesome, ${name}! Your request was captured (Demo Simulation).`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
